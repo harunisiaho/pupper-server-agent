@@ -1,0 +1,24 @@
+- name: Install Required Packages
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - puppetserver
+    - puppet-agent
+
+- name: Update Puppet config
+  template:
+    src: puppet.conf.j2
+    dest: /etc/puppetlabs/puppet/puppet.conf
+    owner: puppet
+    group: puppet
+    backup: yes
+
+- name: start services
+  systemd:
+    name: "{{ item }}"
+    state: restarted
+    enabled: True
+  with_items:
+    - puppetserver
+    - firewalld

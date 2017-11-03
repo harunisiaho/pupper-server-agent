@@ -1,0 +1,2 @@
+puppet-master ansible_host=192.168.50.4
+puppet-agent  ansible_host=192.168.50.5

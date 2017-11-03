@@ -1,0 +1,4 @@
+---
+puppet_master: "puppet-master.sysadminonline.net"
+puppet_client: "puppet-agent.sysadminonline.net"
+run_interval : "3600"

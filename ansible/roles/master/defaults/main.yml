@@ -1,0 +1,3 @@
+---
+puppet_master: "puppet-master.sysadminonline.net"
+run_interval : "3600"

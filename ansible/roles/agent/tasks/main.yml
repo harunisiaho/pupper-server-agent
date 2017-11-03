@@ -1,0 +1,15 @@
+- name: Installing Puppet Agent
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - puppet-agent
+
+- name: Update Puppet Agent Master
+  template: src=puppet.conf.j2 dest=/etc/puppetlabs/puppet/puppet.conf
+
+- name: Ensure Puppet Agent is Started
+  service:
+    enabled: yes
+    name: puppet
+    state: started

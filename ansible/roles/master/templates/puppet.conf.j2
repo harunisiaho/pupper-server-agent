@@ -1,0 +1,13 @@
+[master]
+vardir = /opt/puppetlabs/server/data/puppetserver
+logdir = /var/log/puppetlabs/puppetserver
+rundir = /var/run/puppetlabs/puppetserver
+pidfile = /var/run/puppetlabs/puppetserver/puppetserver.pid
+codedir = /etc/puppetlabs/code
+dns_alt_names = puppet-master.sysadminonline.net,puppet,puppet-master
+
+[main]
+certname = {{ puppet_master }}
+server = {{ puppet_master }}
+environment = production
+runinterval = 1h

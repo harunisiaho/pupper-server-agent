@@ -1,0 +1,49 @@
+- name: Update System Packages
+  yum:
+    name: '*'
+    update_cache: yes
+    state: latest
+
+- name: Add yum repo
+  yum:
+    name: https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm
+    update_cache: yes
+    state: present
+
+- name: Update Hosts File
+  template:
+    src: hosts.j2
+    dest: /etc/hosts
+
+- name: Install epel-release
+  yum:
+    name: epel-release
+    update_cache: yes
+    state: latest
+
+- name: Install Required Packages
+  yum:
+    name: "{{ item }}"
+    update_cache: yes
+    state: present
+  with_items:
+    - tmux
+    - htop
+    - vim
+    - ntpdate
+
+- name: Setting SELINUX to permissive
+  selinux:
+    conf: '/etc/selinux/config'
+    policy: 'targeted'
+    state: 'permissive'
+
+- name: Add ports to firewall
+  firewalld:
+    port: "{{ item }}/tcp"
+    permanent: True
+    state: enabled
+  with_items:
+    - 80
+    - 443
+    - 8140
