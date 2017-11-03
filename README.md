@@ -16,3 +16,7 @@ git clone https://github.com/harunisiaho/pupper-server-agent.git
 ### Run Vagrant up
 
 vagrant up
+
+### You can now ssh to Any of the Nodes
+vagrant ssh puppet-master
+vagrant ssh puppet-client
